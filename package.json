@@ -4,14 +4,24 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "redolf kwame osei",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
     "ejs": "^2.7.4",
     "express": "^4.16.3",
     "lodash": "^4.17.11"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redolfosei/ejsBlog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/redolfosei/ejsBlog/issues"
+  },
+  "homepage": "https://github.com/redolfosei/ejsBlog#readme"
 }
