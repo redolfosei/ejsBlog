@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const _ = require("lodash");
 
 const PORT = process.env.PORT || 3000; 
 
@@ -39,6 +40,7 @@ app.get("/compose", (req,res)=> {
     res.render("compose"); 
 });
 
+
 app.post("/compose", (req,res)=> {
   const post = {
     title: req.body.postTitleCompose,
@@ -52,7 +54,20 @@ app.post("/compose", (req,res)=> {
 
 });
 
-
+app.get("/posts/:postName",function(req,res){ //route paramaeters, requesting the title from the url; 
+  const requestedTitle = req.params.postName; 
+  const lowerCaseRequestedTitle = _.lowerCase(requestedTitle);
+  posts.forEach(function(post){ // To check a variable against an array, you must loop through the array; 
+    const postTitle = post.title; // getting the title the user entered in the form that was pushed to the array; 
+    const lowerCasePostTitle = _.lowerCase(postTitle); 
+    if(lowerCaseRequestedTitle === lowerCasePostTitle) {
+      console.log("Match found"); 
+    } else {
+      console.log("match NOT found"); 
+    }
+  });
+  
+});
 
 
 
@@ -60,3 +75,6 @@ app.post("/compose", (req,res)=> {
 app.listen(PORT, function() {
   console.log("Server started on port " + PORT);
 });
+
+
+
