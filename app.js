@@ -55,13 +55,16 @@ app.post("/compose", (req,res)=> {
 });
 
 app.get("/posts/:postName",function(req,res){ //route paramaeters, requesting the title from the url; 
-  const requestedTitle = req.params.postName; 
-  const lowerCaseRequestedTitle = _.lowerCase(requestedTitle);
+
+  const requestedTitle = _.lowerCase(req.params.postName); 
+
   posts.forEach(function(post){ // To check a variable against an array, you must loop through the array; 
-    const postTitle = post.title; // getting the title the user entered in the form that was pushed to the array; 
-    const lowerCasePostTitle = _.lowerCase(postTitle); 
-    if(lowerCaseRequestedTitle === lowerCasePostTitle) {
-      console.log("Match found"); 
+    const postTitle = _.lowerCase(post.title); // getting the title the user entered in the form that was pushed to the array; 
+    if(requestedTitle === postTitle) {
+      res.render("post", {
+        postTitle: postTitle,
+        postContent: post.content 
+      }); 
     } else {
       console.log("match NOT found"); 
     }
